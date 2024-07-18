@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.blogdemo.mapper.UserMapper">
+    <update id="updateUser">
+        UPDATE user SET username = #{username}, password = #{password} WHERE user_id = #{userId}
+    </update>
+
+
+    <select id="getUserByUserName" resultType="com.blogdemo.pojo.User">
+        SELECT * FROM user WHERE username = #{username}
+    </select>
+    <select id="getUserById" resultType="java.util.Map">
+        SELECT username, email, created, last_modified FROM user WHERE user_id = #{userId}
+    </select>
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.blogdemo.mapper.ArticleMapper">
+    <update id="updateArticle">
+        UPDATE article SET title = #{title}, content = #{content}, last_modified = #{lastModified} WHERE post_id = #{postId}
+    </update>
+    <delete id="deleteArticle">
+        DELETE FROM article WHERE post_id = #{postId}
+    </delete>
+    <select id="getArticleById" resultType="com.blogdemo.pojo.Article">
+        SELECT * FROM article WHERE post_id = #{postId}
+    </select>
+
+    <select id="getAllArticlesByUserId" resultType="com.blogdemo.pojo.Article">
+        SELECT * FROM article WHERE user_id = #{userId}
+    </select>
+
+
+</mapper>
