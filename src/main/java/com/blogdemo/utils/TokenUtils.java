@@ -22,12 +22,10 @@ public class TokenUtils {
     public static final Long BASE_TIME = (long) (1000 * 60 * 60); // 1小时
 
     public static String generateToken(User user, int refreshTime) {
-
         String userId = user.getUserId();
         Long expireTime = System.currentTimeMillis() + (BASE_TIME * refreshTime);
         TokenAuth tokenAuth = new TokenAuth(userId + TOKEN_AUTH, expireTime);
         String authStr = tokenAuth.toString();
-        // base64加密
         String tokenHeaderBase64 = Base64.getEncoder().encodeToString(userId.getBytes());
         String tokenAuthBase64 = Base64.getEncoder().encodeToString(authStr.getBytes());
         return tokenHeaderBase64 + "." + tokenAuthBase64;
@@ -50,7 +48,6 @@ public class TokenUtils {
         if (tokenAuthObj.getTimestamp() < System.currentTimeMillis()) {
             throw new TokenException("token过期，请重新登录");
         }
-
         return tokenHeader;
     }
 

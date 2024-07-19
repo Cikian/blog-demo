@@ -61,7 +61,6 @@ public class AuthInterceptor implements HandlerInterceptor {
         String token = request.getHeader("token");
         if (token != null) {
             Long remainingTime = TokenUtils.getRemainingTime(token);
-            // 如果
             if (remainingTime < 1000L * 60 * FLUSH_TIME) {
                 String uid = TokenUtils.parseToken(token);
                 // 刷新 token
